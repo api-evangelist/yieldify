@@ -1,8 +1,25 @@
 aid: yieldify
+accessModel:
+  pricing: unknown
+  onboarding: unknown
+  trial: false
+  try_now: false
+  public: false
+  label: Unknown
+  confidence: low
+  source: []
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/yieldify.png
 name: Yieldify *
-description: 'Yieldify * is a company surfaced as a portfolio company of gv and added to the API Evangelist
-  network as a stub for enrichment. Sector: enterprise. This profile is a lead awaiting the enrichment
-  pipeline.'
+description: 'Yieldify is a website personalization and conversion rate optimization (CRO) platform
+  for ecommerce brands, founded in 2013 in London by Jay Radia and backed by investors including GV
+  (Google Ventures). Its SaaS platform delivers targeted on-site messaging, customer-journey
+  personalization, and A/B testing to lift conversion and revenue. Yieldify was acquired by Publicis
+  Groupe in January 2023 and folded into Epsilon, where it is now offered as the "Accelerate"
+  (Yieldify) platform; yieldify.com now redirects to Epsilon. The product is delivered as a hosted,
+  managed marketing service with a customer help center rather than a public developer API — no
+  public REST/OpenAPI surface, SDK, or developer portal was found during enrichment.'
 url: https://raw.githubusercontent.com/api-evangelist/yieldify/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
@@ -12,10 +29,15 @@ x-tier: stub
 x-tier-reason: portfolio-lead
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-21'
 tags:
 - Company
 - Enterprise
+- Personalization
+- Conversion Rate Optimization
+- Ecommerce
+- Marketing Technology
+- Customer Experience
 apis: []
 maintainers:
 - FN: Kin Lane
@@ -23,5 +45,14 @@ maintainers:
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: DomainSecurity
+  url: security/yieldify-domain-security.yml
 - type: Website
   url: http://yieldify.com
+- type: Support
+  url: https://support.yieldify.com/en/
+x-enrichment:
+  date: '2026-07-21'
+  status: minimal
+  artifacts_added: 1
+  pass: local-v1
