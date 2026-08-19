@@ -1,0 +1,59 @@
+generated: '2026-08-13'
+method: searched
+source: >-
+  registry.npmjs.org search, pypi.org, rubygems.org, api.github.com (org + repo search), and the
+  Epsilon Accelerate Help Center for Yieldify (support.yieldify.com)
+package_count: 0
+packages: []
+note: >-
+  RECORDED ABSENCE, not an unchecked gap. Yieldify (now Epsilon Accelerate) publishes no
+  first-party client libraries in any package registry, and ships no public API for one to wrap.
+  The product is delivered exclusively as a customer-specific JavaScript tag copied from the
+  Settings page of the Yieldify Conversion Platform and pasted into the site <head> (directly, via
+  Google Tag Manager / Tealium, or into a Shopify theme.liquid). That tag has no registry entry and
+  no publicly pinned CDN URL — the snippet itself is only visible to an authenticated customer —
+  so there is no version or publish date to read, and none is guessed here. No Packages or SDKs
+  pointer is emitted in apis.yml, because emitting one would assert an SDK surface the provider
+  does not have.
+registries_checked:
+- registry: npm
+  query: https://registry.npmjs.org/-/v1/search?text=yieldify
+  status: 200
+  first_party_hits: 0
+  note: >-
+    7 results, all unrelated third-party generator/async utilities that merely reuse the word
+    "yieldify" (ForbesLindesay/yieldify ES6 compiler, json-yieldify, vz.yieldify, etc.).
+- registry: pypi
+  query: https://pypi.org/pypi/yieldify/json
+  status: 404
+  first_party_hits: 0
+- registry: rubygems
+  query: https://rubygems.org/api/v1/search.json?query=yieldify
+  status: 200
+  first_party_hits: 0
+  note: empty result set.
+- registry: github
+  query: https://api.github.com/orgs/yieldify
+  status: 404
+  first_party_hits: 0
+  note: >-
+    No GitHub organization and no GitHub user named "yieldify"
+    (https://api.github.com/users/yieldify also 404). Repository search returns 54 results, all
+    third-party — interview exercises, tech tests, and student projects.
+distribution:
+- kind: javascript-tag
+  registry: none
+  official: true
+  version: null
+  published: null
+  source: https://support.yieldify.com/en/articles/5130901-manual-tag-integration
+  note: >-
+    The Yieldify/Epsilon tag is the only first-party distributed artifact. It is retrieved from the
+    authenticated platform Settings page and placed before </head> on every page; the docs
+    recommend a tag manager over manual placement. Because the snippet is customer-specific and
+    gated, no public URL, version, or publish date exists to record — version is null by
+    measurement, not by omission.
+  hosts_served_from:
+  - '*.yieldify.com'
+  - '*.yieldify-production.com'
+  - yieldify.connectorengine.com

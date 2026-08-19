@@ -1,0 +1,65 @@
+generated: '2026-08-13'
+method: searched
+source: live probes of yieldify.com, www.yieldify.com, status.yieldify.com and support.yieldify.com
+note: >-
+  There is no API to version, deprecate, or SLA. What this file records instead is the observable
+  lifecycle of the PRODUCT and its public surface after the Publicis/Epsilon acquisition — because
+  that, not a versioning policy, is what a reader needs to know about Yieldify in 2026.
+versioning:
+  scheme: none-published
+  current: null
+  docs: null
+  note: >-
+    No API versioning policy exists. The only versioned documents published are the Data Collection
+    Policy (version date 27/05/2026) and the SaaS terms (UK v5.0).
+deprecation:
+  policy_url: null
+  sunset_header: false
+  note: No deprecation policy and no RFC 8594 Sunset/Deprecation support — there is no API surface.
+sla:
+  url: null
+  uptime_target: null
+status_page:
+  url: https://status.yieldify.com
+  active: false
+  http_status: 200
+  final_url: https://yieldify.statuspage.io/inactive
+  note: >-
+    status.yieldify.com resolves and 200s, but Atlassian Statuspage redirects it to
+    /inactive — the page has been deactivated. NO `StatusPage` pointer is emitted in apis.yml:
+    a decommissioned status page is not operational transparency, and pointing at it would credit
+    a surface that no longer reports anything.
+product_lifecycle:
+- date: '2013'
+  event: Yieldify founded in London by Jay Radia; backed by GV (Google Ventures).
+- date: '2023-01'
+  event: Acquired by Publicis Groupe and folded into Epsilon.
+- date: '2026'
+  event: >-
+    Product marketed as Epsilon Accelerate. The help center is titled "Epsilon Accelerate Help
+    Center for Yieldify" and the Data Collection Policy is headed "Epsilon Accelerate (formerly
+    Yieldify)". The customer application still runs under the Yieldify Conversion Platform (YCP)
+    name at convert.yieldify.com.
+- date: '2026'
+  event: >-
+    Upgrade path published from the Yieldify tag to the "Epsilon tag", which adds COREid
+    capabilities (real-time attribute recognition, lookalike audiences, full-circle retargeting,
+    demographics reporting).
+  source: https://support.yieldify.com/en/articles/13016967-epsilon-tag-features
+web_surface_decay:
+- surface: https://yieldify.com
+  observed: 301 to https://www.epsilon.com/us/products-and-services/accelerate
+- surface: https://www.yieldify.com/ and most marketing paths
+  observed: >-
+    200, but the response body is the Epsilon Accelerate product page — the legacy Yieldify
+    marketing pages (/partners-integrations/, /privacy-accessibility/, /pricing) have been
+    rewritten to it. A genuinely unmapped path still returns the old Yieldify 404 page.
+- surface: https://www.yieldify.com/blog/
+  observed: 200 — the legacy WordPress blog is still live and serves an RSS feed at /feed/.
+- surface: https://www.yieldify.com/post-sitemap.xml
+  observed: 200, lastmod 2023-06-30 — blog publishing effectively stopped around the acquisition.
+- surface: https://status.yieldify.com
+  observed: 200 -> yieldify.statuspage.io/inactive (deactivated).
+- surface: https://convert.yieldify.com
+  observed: 200 — Angular SPA login for the Yieldify Conversion Platform; answers 200 with the app shell for every path.
+deprecated_operations: []

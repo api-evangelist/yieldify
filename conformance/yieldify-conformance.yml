@@ -1,0 +1,89 @@
+generated: '2026-08-13'
+method: searched
+source: https://support.yieldify.com/en/collections/2887602-policies
+note: >-
+  Yieldify (Epsilon Accelerate) publishes no API, so every API-shaped standard below is recorded
+  as not-applicable rather than failed. What it DOES publish is a data-protection posture — a
+  Platform Policy, a dated Data Collection Policy, a Cookie Policy, and a self-service data
+  subject access/erasure workflow inside the customer platform. Those are captured with evidence.
+  No named security certification (SOC 2, ISO 27001, PCI DSS, HIPAA, FedRAMP) is published on any
+  Yieldify host, so NO `Compliance` pointer is emitted in apis.yml — per the pipeline rule that
+  Compliance is only awarded for a published compliance program, not for asserted conformance.
+standards:
+- id: gdpr-data-subject-rights
+  conforms: true
+  evidence: >-
+    "Data Subject Rights" documents a self-service Data Access Request and Data Erasure Request
+    flow in the Yieldify Conversion Platform (Website Settings > Data Privacy & Compliance),
+    with a stated 24-hour fulfilment window, a link that expires 7 days after a Data Access
+    Request, and a one-month statutory response reminder.
+  source: https://support.yieldify.com/en/articles/9557077-data-subject-rights
+- id: gdpr-controller-processor-model
+  conforms: true
+  evidence: >-
+    The Yieldify Platform Policy states data is collected on the instruction of the client, "the
+    website owner, as the data controller", positioning Yieldify as processor.
+  source: https://support.yieldify.com/en/articles/5245139-yieldify-platform-policy
+- id: published-data-collection-policy
+  conforms: true
+  evidence: >-
+    "Epsilon Accelerate (formerly Yieldify) Data Collection Policy", version dated 27/05/2026,
+    enumerates the technical, personal, activity, transactional, interaction and content data
+    categories collected and states collection is via a JavaScript tag in the site header.
+  source: https://support.yieldify.com/en/articles/5144108-data-collection-policy
+- id: cookie-policy
+  conforms: true
+  evidence: >-
+    Cookie Policy published by "Zeus Enterprise Ltd, trading as Yieldify"; distinguishes session
+    vs persistent cookies and web beacons/pixels.
+  source: https://support.yieldify.com/en/articles/5245157-cookie-policy
+- id: subject-request-operations
+  conforms: true
+  evidence: >-
+    Separate operational runbooks are published for managing subject access requests and subject
+    erasure requests.
+  source: https://support.yieldify.com/en/articles/6769465-managing-subject-access-requests
+- id: content-security-policy
+  conforms: true
+  evidence: >-
+    A dedicated CSP integration guide enumerates the exact directives and hosts a customer must
+    allowlist, and warns against adding directives that do not already exist.
+  source: https://support.yieldify.com/en/articles/6295536-tag-implementation-content-security-policy-csp
+- id: wcag-accessibility
+  conforms: partial
+  evidence: >-
+    An "Accessibility Basics" article covers accessibility of campaign experiences; no WCAG level
+    or conformance statement (VPAT/ACR) is published.
+  source: https://support.yieldify.com/en/articles/5179812-accessibility-basics
+- id: soc2
+  conforms: false
+  evidence: No SOC 2 report or attestation is referenced on any yieldify.com or support.yieldify.com page.
+- id: iso-27001
+  conforms: false
+  evidence: No ISO 27001 certification is referenced on any Yieldify host.
+- id: oauth2
+  conforms: n/a
+  evidence: >-
+    No API and no authorization server. The only OAuth in evidence is Yieldify acting as an OAuth
+    CLIENT against Mailchimp when a customer connects an ESP.
+- id: oidc
+  conforms: n/a
+  evidence: /.well-known/openid-configuration 404s on every Yieldify host (see well-known/yieldify-well-known.yml).
+- id: rfc9457-problem-details
+  conforms: n/a
+  evidence: No public API, therefore no error envelope to assess.
+- id: rfc9116-security-txt
+  conforms: false
+  evidence: >-
+    No Yieldify-served security.txt. support.yieldify.com returns Intercom's security.txt because
+    the help center is Intercom-hosted (Canonical https://app.intercom.com/.well-known/security.txt).
+- id: rfc8594-sunset-header
+  conforms: n/a
+  evidence: No public API.
+- id: openapi
+  conforms: false
+  evidence: >-
+    No OpenAPI/Swagger document at any probed location on yieldify.com, www.yieldify.com,
+    support.yieldify.com or convert.yieldify.com.
+legal_entity: Zeus Enterprise Ltd, trading as Yieldify
+parent: Epsilon Data Management, LLC (Publicis Groupe) — product marketed as Epsilon Accelerate

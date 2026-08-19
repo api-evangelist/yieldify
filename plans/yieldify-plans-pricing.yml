@@ -1,0 +1,34 @@
+generated: '2026-08-13'
+method: searched
+source: https://www.epsilon.com/us/products-and-services/accelerate
+plan_count: 0
+plans: []
+note: >-
+  Yieldify / Epsilon Accelerate publishes NO pricing of any kind. There is no pricing page, no
+  tiers, no quotas, no overage schedule and no self-serve signup — the product is sold as a
+  managed enterprise marketing service through Epsilon sales, with onboarding and "Specialist
+  Services" delivered by a Technical Account Manager. Even the campaign builder's Advanced
+  Components are gated behind an account manager rather than a plan entitlement. This is a
+  measured zero, not an unchecked field.
+model: contact-sales
+self_serve_signup: false
+free_trial: false
+evidence:
+- url: https://www.yieldify.com/pricing
+  status: 200
+  note: >-
+    Resolves to the Epsilon Accelerate product page; no pricing content. The legacy Yieldify
+    pricing page no longer exists.
+- url: https://www.epsilon.com/us/products-and-services/accelerate
+  status: 200
+  note: Product page ends in a "Contact us" call to action; no prices, tiers, or quotas anywhere on the page.
+- url: https://support.yieldify.com/en/
+  status: 200
+  note: >-
+    137 help-center articles across 13 collections; none covers pricing, plans, quotas, billing,
+    or entitlements.
+- url: https://support.yieldify.com/en/articles/10436581-advanced-components
+  status: 200
+  note: >-
+    Advanced Components "require support from a Technical Account Manager" — capability access is
+    account-managed, not plan-based.

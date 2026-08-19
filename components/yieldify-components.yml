@@ -1,0 +1,189 @@
+generated: '2026-08-13'
+method: searched
+source: https://support.yieldify.com/en/collections/2887594-campaign-formats-and-components
+docs: https://support.yieldify.com/en/
+note: >-
+  Yieldify (now Epsilon Accelerate) ships NO server-side SDK and NO public REST API — its entire
+  developer-visible surface is client-side. A single JavaScript tag is placed on the customer's
+  site and renders a documented library of on-site experience components, configured from the
+  Yieldify Conversion Platform (YCP). This artifact captures that published component surface,
+  the loader, the CSP hosts a customer must allowlist, the dynamic-expression language the
+  components accept, and the client-side analytics events the tag emits. Everything here is read
+  verbatim from the public Epsilon Accelerate Help Center for Yieldify; nothing is inferred.
+loader:
+  kind: javascript-tag
+  placement: immediately before </head>, on every page of the customer site
+  distribution: >-
+    Customer-specific snippet copied from the Settings page of the Yieldify Conversion Platform;
+    no public CDN URL, no npm package, no version string is published.
+  install_methods:
+  - method: google-tag-manager
+    detail: Custom HTML tag, trigger All Pages / Page View
+    source: https://support.yieldify.com/en/articles/5129907-google-tag-manager-integration
+  - method: tealium-tag-manager
+    source: https://support.yieldify.com/en/articles/5130005-tealium-tag-manager-integration
+  - method: manual
+    detail: Paste before </head> on every page; the docs explicitly recommend a tag manager instead.
+    source: https://support.yieldify.com/en/articles/5130901-manual-tag-integration
+  - method: shopify
+    detail: theme.liquid <head>; Shopify Plus customers additionally edit checkout.liquid
+    source: https://support.yieldify.com/en/articles/5130928-shopify-integration
+  - method: recharge-checkout
+    source: https://support.yieldify.com/en/articles/5802251-recharge-checkout-integration
+  rendering_note: >-
+    The tag inserts an iframe to limit the amount of code executing in the host page context,
+    which is why child-src / frame-src must allow *.yieldify.com and 'about:blank'.
+content_security_policy:
+  source: https://support.yieldify.com/en/articles/6295536-tag-implementation-content-security-policy-csp
+  guidance: >-
+    Extend existing directives only — the docs explicitly warn against creating new directives
+    solely for Yieldify.
+  directives:
+  - directive: default-src
+    hosts: ['https://*.yieldify.com', 'https://*.yieldify-production.com']
+  - directive: child-src
+    hosts: ['https://*.yieldify.com', "'about:blank'"]
+  - directive: frame-src
+    hosts: ['https://*.yieldify.com', "'about:blank'"]
+  - directive: script-src
+    hosts: ['https://*.yieldify.com', "'unsafe-inline'"]
+  - directive: connect-src
+    hosts: ['https://*.yieldify.com', '*.yieldify-production.com', 'https://yieldify.connectorengine.com']
+  - directive: img-src
+    hosts: ['https://*.yieldify.com', 'https://*.yieldify-production.com']
+  - directive: font-src
+    hosts: ['https://*.yieldify-production.com', 'fonts.gstatic.com']
+    note: Custom platform fonts are served from https://fonts.yieldify-production.com/
+  - directive: worker-src
+    hosts: ['blob:']
+families:
+- family: formats
+  label: Experience formats
+  description: The container formats a campaign can be rendered in on the customer site.
+  components:
+  - name: Overlays
+    source: https://support.yieldify.com/en/articles/5144124-overlays
+  - name: Notifications
+    source: https://support.yieldify.com/en/articles/5144141-notifications
+  - name: Banners
+    source: https://support.yieldify.com/en/articles/5144168-banners
+  - name: Sticky Experiences
+    source: https://support.yieldify.com/en/articles/5144189-sticky-experiences
+  - name: Embedded Experiences
+    source: https://support.yieldify.com/en/articles/5144664-embedded-experiences
+  - name: Persistent Floating Buttons
+    source: https://support.yieldify.com/en/articles/5144164-persistent-floating-buttons
+  - name: Toasters
+    source: https://support.yieldify.com/en/articles/12092273-toasters
+- family: elements
+  label: In-experience elements
+  description: Elements composed inside a format.
+  components:
+  - name: Call to Action
+    source: https://support.yieldify.com/en/articles/5144918-call-to-action
+  - name: In-line Rich Text
+    source: https://support.yieldify.com/en/articles/5144932-in-line-rich-text
+  - name: Images
+    source: https://support.yieldify.com/en/articles/5145430-images
+  - name: Close Button
+    source: https://support.yieldify.com/en/articles/8336749-close-button
+  - name: Carousel
+    source: https://support.yieldify.com/en/articles/16022193-carousel
+  - name: Countdown Timers
+    source: https://support.yieldify.com/en/articles/12704145-countdown-timers
+  - name: Coupon Code
+    source: https://support.yieldify.com/en/articles/5162502-coupon-code
+  - name: Dynamic Promotions
+    source: https://support.yieldify.com/en/articles/5162513-dynamic-promotions
+  - name: Social Proof
+    source: https://support.yieldify.com/en/articles/5156900-social-proof
+  - name: Dynamic Social Proof
+    source: https://support.yieldify.com/en/articles/5162515-dynamic-social-proof
+  - name: Cross-sell Notifications
+    source: https://support.yieldify.com/en/articles/5168122-cross-sell-notifications
+- family: forms
+  label: Lead capture / forms
+  components:
+  - name: Forms
+    source: https://support.yieldify.com/en/articles/10150316-forms
+  - name: Lead Capture Forms
+    source: https://support.yieldify.com/en/articles/5145190-lead-capture-forms
+  - name: Dropdowns, Radio Groups and Checkboxes
+    source: https://support.yieldify.com/en/articles/5145310-dropdowns-radio-groups-and-checkboxes
+  - name: Validation Message
+    source: https://support.yieldify.com/en/articles/5145372-validation-message
+  - name: Consumer Journey / Multi-stage Lead Capture
+    source: https://support.yieldify.com/en/articles/5187479-consumer-journey-multi-stage-lead-capture
+- family: advanced
+  label: Advanced Components
+  description: >-
+    Specialized elements that require a Technical Account Manager to configure — the customer
+    cannot add them self-service, and can only adjust size/position afterwards.
+  gated: true
+  source: https://support.yieldify.com/en/articles/10436581-advanced-components
+  components:
+  - name: Calendar Event
+  - name: Countdown Timer
+  - name: Dynamic Call to Action
+  - name: Dynamic Image
+  - name: Progress Bar
+  - name: Share Button
+  - name: Wheel of Fortune
+  - name: YouTube Video
+dynamic_content:
+  source: https://support.yieldify.com/en/articles/11478574-dynamic-content
+  options: [Dynamic variable, Dynamic promotion, Dynamic page views, Dynamic expressions]
+  expression_language:
+    source: https://support.yieldify.com/en/articles/11420343-custom-dynamic-expressions
+    description: >-
+      A small typed expression DSL for personalizing component copy. Variables must already exist
+      in the site's site-mapping configuration and must be declared with their type.
+    accessor: var<string>("name") / var<number>("name")
+    concatenation: '++'
+    conditionals: if <expr> then <expr> else <expr>; if / else if / else supported
+    published_examples:
+    - 'var<number>("product.price")'
+    - '"You have £" ++ var<number>("basket.value") ++ " worth of items in your basket. "'
+    - 'if var<number>("basket.value") < 20 then "Only £" ++ 20 - var<number>("basket.value") ++ " away from Free shipping" else "You have qualified for Free shipping"'
+tooling:
+- name: Preview App
+  kind: client-side QA tool
+  activation: append '#yipreview' to any URL on the customer site and reload
+  capabilities: [Preview mode (honors real targeting/triggering rules), Audiences View]
+  source: https://support.yieldify.com/en/articles/5170209-preview-app
+analytics_events:
+  note: >-
+    Client-side analytics events the tag pushes into the customer's own analytics stack. This is
+    NOT a webhook or server-side event API — there is no subscription endpoint and no delivery
+    contract — so no AsyncAPI or Webhooks pointer is emitted for it.
+  ga4:
+    source: https://support.yieldify.com/en/articles/8005968-ga4-yieldify-integrated-events
+    events:
+    - name: yieldify_impression
+      parameters: [yieldify_campaign_name, yieldify_campaign_variant, yieldify_campaign_stage, yieldify_campaign_id]
+    - name: yieldify_click
+      parameters: [yieldify_element_id, yieldify_campaign_name, yieldify_campaign_variant, yieldify_campaign_stage, yieldify_campaign_action, yieldify_campaign_id]
+    - name: yieldify_close
+      parameters: [yieldify_campaign_name, yieldify_campaign_variant, yieldify_campaign_stage, yieldify_campaign_id]
+    - name: yieldify_form_submit
+      parameters: [yieldify_element_id, yieldify_campaign_name, yieldify_campaign_variant, yieldify_campaign_stage, yieldify_campaign_id]
+  universal_analytics:
+    source: https://support.yieldify.com/en/articles/5230838-google-analytics-integration
+    envelope:
+      category: Yieldify
+      action: '<campaign name> - <variant> - <format/stage>'
+      label: Impression | Click | Close | Submit (+ element ID appended where >1 CTA)
+    tracker_modes: [send to all trackers (default), send to specific trackers]
+    opt_out: Disabled per site in platform Settings.
+destination_integrations:
+  note: >-
+    Outbound connectors configured in the platform (Yieldify consuming third-party APIs on the
+    customer's behalf) — recorded for completeness; none of these is an API Yieldify exposes.
+  connectors:
+  - name: Mailchimp
+    auth: OAuth authorization from the platform Settings page; customer supplies an Audience ID.
+    source: https://support.yieldify.com/en/articles/5230839-mailchimp-integration
+  - name: Campaign Monitor
+    source: https://support.yieldify.com/en/articles/5230841-campaign-monitor-integration
+  - name: Google Analytics / GA4
+    source: https://support.yieldify.com/en/articles/8032915-ga4-integration-via-google-tag-manager

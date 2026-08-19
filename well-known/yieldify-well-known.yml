@@ -1,0 +1,171 @@
+generated: '2026-08-13'
+method: probed
+source: live HTTP probes of every Yieldify host found in apis.yml and on the public site
+note: >-
+  Every /.well-known/ path was probed on all four Yieldify hosts. NOTHING was found that the
+  provider itself serves, so NO WellKnown or SecurityTxt pointer is emitted in apis.yml. Two
+  200-class results are recorded below as explicit MISSES: support.yieldify.com serves Intercom's
+  security.txt (the help center is hosted by Intercom and the document's own Canonical is
+  https://app.intercom.com/.well-known/security.txt — it is Intercom's disclosure program, not
+  Yieldify's), and convert.yieldify.com answers 200 with the Angular SPA index.html shell for
+  EVERY path including nonsense ones, which is a soft-200, not a document.
+hosts:
+- host: https://yieldify.com
+  role: apex website (301 -> https://www.epsilon.com/us/products-and-services/accelerate)
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+  - path: /llms.txt
+    status: 301
+    redirects_to: https://www.yieldify.com/llms.txt
+    final_status: 404
+  - path: /openapi.json
+    status: 301
+    final_status: 404
+  - path: /swagger.json
+    status: 301
+    final_status: 404
+  - path: /api-docs
+    status: 301
+    final_status: 404
+  - path: /robots.txt
+    status: 200
+    document: true
+    note: WordPress/Flywheel default robots file; no sitemap or API disclosure of interest.
+- host: https://www.yieldify.com
+  role: legacy Yieldify marketing site (WordPress on Flywheel; most marketing paths now rewritten to the Epsilon Accelerate page)
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+  - path: /llms.txt
+    status: 404
+  - path: /openapi.json
+    status: 404
+  - path: /swagger.json
+    status: 404
+  - path: /api-docs
+    status: 404
+  - path: /robots.txt
+    status: 200
+    document: true
+- host: https://support.yieldify.com
+  role: Epsilon Accelerate Help Center for Yieldify (hosted by Intercom)
+  documents:
+  - path: /.well-known/security.txt
+    status: 200
+    document: false
+    counted: false
+    note: >-
+      Third-party document. Body is Intercom's security.txt (Contact https://bugcrowd.com/intercom
+      and mailto:security@intercom.com, Canonical https://app.intercom.com/.well-known/security.txt).
+      Served because Intercom hosts the help center on this CNAME; it is not a Yieldify disclosure
+      program and is NOT saved or pointed at from apis.yml.
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+  - path: /llms.txt
+    status: 404
+  - path: /openapi.json
+    status: 404
+  - path: /swagger.json
+    status: 404
+  - path: /api-docs
+    status: 404
+- host: https://convert.yieldify.com
+  role: Yieldify Conversion Platform (YCP) customer application — Angular SPA, login required
+  soft_200: true
+  documents:
+  - path: /.well-known/security.txt
+    status: 200
+    document: false
+    counted: false
+    note: SPA catch-all — body is the Angular index.html shell (<!DOCTYPE html> ... <title>Yieldify</title>).
+  - path: /.well-known/openid-configuration
+    status: 200
+    document: false
+    counted: false
+    note: SPA catch-all HTML shell.
+  - path: /.well-known/oauth-authorization-server
+    status: 200
+    document: false
+    counted: false
+    note: SPA catch-all HTML shell.
+  - path: /.well-known/api-catalog
+    status: 200
+    document: false
+    counted: false
+    note: SPA catch-all HTML shell.
+  - path: /.well-known/ai-plugin.json
+    status: 200
+    document: false
+    counted: false
+    note: SPA catch-all HTML shell.
+  - path: /.well-known/agent-card.json
+    status: 200
+    document: false
+    counted: false
+    note: >-
+      SPA catch-all HTML shell — NOT an A2A Agent Card. No a2a/ artifact is written, per the
+      pipeline rule that an agent card is search-only and a 200 must parse as a JSON AgentCard object.
+  - path: /.well-known/agent.json
+    status: 200
+    document: false
+    counted: false
+    note: SPA catch-all HTML shell.
+  - path: /llms.txt
+    status: 200
+    document: false
+    counted: false
+    note: SPA catch-all HTML shell.
+  - path: /openapi.json
+    status: 200
+    document: false
+    counted: false
+    note: SPA catch-all HTML shell — no OpenAPI is served here.
+  - path: /swagger.json
+    status: 200
+    document: false
+    counted: false
+    note: SPA catch-all HTML shell.
+  - path: /api-docs
+    status: 200
+    document: false
+    counted: false
+    note: SPA catch-all HTML shell.
+summary:
+  paths_probed: 46
+  real_documents_found: 0
+  pointer_emitted: false
